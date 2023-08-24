@@ -1,0 +1,17 @@
+datasets:
+  ucm_caption: # name of the dataset builder
+    dataset_card: dataset_card/ucm_caption.md
+    # data_dir: ${env.data_dir}/datasets
+    data_type: images # [images|videos|features]
+
+    build_info:
+      # Pre-training phase annotates away validation and test sets
+      annotations:
+        train:
+          storage: /data1/users/yangcong/data/RSIC/UCM/annotations/UCM_train.json
+        # val:
+        #   storage: /data1/users/yangcong/data/RSIC/UCM/annotations/UCM_val.json
+        # test:
+        #   storage: /data1/users/yangcong/data/RSIC/UCM/annotations/UCM_test.json
+      images:
+        storage: /data1/users/yangcong/data/RSIC/UCM/images/

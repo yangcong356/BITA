@@ -1,0 +1,17 @@
+datasets:
+  rsicd_caption: # name of the dataset builder
+    dataset_card: dataset_card/rsicd_caption.md
+    # data_dir: ${env.data_dir}/datasets
+    data_type: images # [images|videos|features]
+
+    build_info:
+      # Pre-training phase annotates away validation and test sets
+      annotations:
+        train:
+          storage: /data1/users/yangcong/data/RSIC/RSICD/annotations/RSICD_train.json
+        # val:
+        #   storage: /data1/users/yangcong/data/RSIC/RSICD/annotations/RSICD_val.json
+        # test:
+        #   storage: /data1/users/yangcong/data/RSIC/RSICD/annotations/RSICD_test.json
+      images:
+        storage: /data1/users/yangcong/data/RSIC/RSICD/images/

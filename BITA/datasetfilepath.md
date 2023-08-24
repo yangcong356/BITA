@@ -1,0 +1,11 @@
+- /data
+  - /data/RSIC
+    - /data/RSIC/RSICD 
+      - /data/RSIC/RSICD/images/
+      - /data/RSIC/RSICD/annotations/
+    - /data/RSIC/UCM
+      - /data/RSIC/RSICD/images/
+      - /data/RSIC/RSICD/annotations/
+    - /data/RSICD/NWPU
+      - /data/RSIC/RSICD/images/
+      - /data/RSIC/RSICD/annotations/
