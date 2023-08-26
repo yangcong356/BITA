@@ -12,7 +12,7 @@ model:
   vit_precision: "fp16"
   freeze_vit: True
 
-  # Q-Former
+  # IFT
   num_query_token: 32
 
 
