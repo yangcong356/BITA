@@ -38,12 +38,12 @@ class BITABase(BaseModel):
             return contextlib.nullcontext()
 
     @classmethod
-    def init_IFT(cls, num_query_token, vision_width, cross_attention_freq=2):
+    def init_IFT(cls, num_query_token, vision_width):
         encoder_config = BertConfig.from_pretrained("bert-base-uncased")
         encoder_config.encoder_width = vision_width
         # insert cross-attention layer every other block
         encoder_config.add_cross_attention = True
-        encoder_config.cross_attention_freq = cross_attention_freq
+        # encoder_config.cross_attention_freq = cross_attention_freq
         encoder_config.query_length = num_query_token
         print(encoder_config.cross_attention_freq)
         IFformer = BertLMHeadModel.from_pretrained(
