@@ -26,13 +26,13 @@ model:
 preprocess:
     vis_processor:
         train:
-          name: "blip_image_train"
+          name: "bita_image_train"
           image_size: 224
         eval:
-          name: "blip_image_eval"
+          name: "bita_image_eval"
           image_size: 224
     text_processor:
         train:
-          name: "blip_caption"
+          name: "bita_caption"
         eval:
-          name: "blip_caption"
+          name: "bita_caption"
