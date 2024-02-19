@@ -19,7 +19,7 @@ In the first stage of pre-training, the visual encoder used for training is ViT-
 bash ./scripts/bita/train/pretrain_stage1.sh
 ```
 
- ## Pretraining (stage2)
+ ## Pre-training (stage2)
 "In the second stage of pre-training, please replace the value of the 'pretrained' field in the 'BITA/configs/models/bita/bita_pretrain_opt2.7b.yaml' file with the weights from the completion of the first stage of pre-training, located at '/usr/code/BITA/BITA_weights/Stage1/checkpoint_best.pth'. Then, run the following script:"
 ```
 bash ./scripts/bita/train/pretrain_stage2.sh
