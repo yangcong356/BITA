@@ -8,10 +8,10 @@ datasets:
       # Pre-training phase annotates away validation and test sets
       annotations:
         train:
-          storage: /data1/users/yangcong/data/RSIC/RSICD/annotations/RSICD_train.json
+          storage: /usr/data/RSIC/RSICD/annotations/RSICD_train.json
         # val:
-        #   storage: /data1/users/yangcong/data/RSIC/RSICD/annotations/RSICD_val.json
+        #   storage: /usr/data/RSIC/RSICD/annotations/RSICD_val.json
         # test:
-        #   storage: /data1/users/yangcong/data/RSIC/RSICD/annotations/RSICD_test.json
+        #   storage: /usr/data/RSIC/RSICD/annotations/RSICD_test.json
       images:
-        storage: /data1/users/yangcong/data/RSIC/RSICD/images/
+        storage: /usr/data/RSIC/RSICD/images/
