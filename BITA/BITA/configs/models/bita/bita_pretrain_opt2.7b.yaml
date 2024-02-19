@@ -2,7 +2,7 @@ model:
   arch: pretrain_opt2.7b
   load_finetuned: False
 
-  pretrained: ""
+  pretrained: "/usr/code/BITA/BITA_weights/Stage1/checkpoint_best.pth"
   finetuned: ""
 
   # vit encoder

@@ -2,7 +2,7 @@ model:
   arch: caption_rsicd_opt2.7b
   load_finetuned: True
 
-  pretrained: ""
+  pretrained: "/usr/code/BITA/BITA_weights/Stage2/checkpoint_best.pth"
   finetuned: ""
 
   # vit encoder
