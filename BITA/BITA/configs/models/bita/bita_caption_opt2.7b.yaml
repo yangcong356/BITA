@@ -3,7 +3,8 @@ model:
   load_finetuned: True
 
   pretrained: "/usr/code/BITA/BITA_weights/Stage2/checkpoint_best.pth"
-  finetuned: ""
+  # Using Different Dataset Name Replace "/UCM"
+  finetuned: "/usr/code/BITA/BITA_weights/Caption/UCM/checkpoint_best.pth"
 
   # vit encoder
   vit_model: "clip_L"
