@@ -1,0 +1,73 @@
+model:
+  arch: bita_opt
+  model_type: caption_rsicd_opt2.7b
+  use_grad_checkpoint: False
+
+datasets:
+  # rsicd_caption:
+  #   vis_processor:
+  #       train:
+  #         name: "bita_image_train"
+  #         image_size: 224
+  #       eval:
+  #         name: "bita_image_train"
+  #         image_size: 224
+  #   text_processor:
+  #       train:
+  #         name: "bita_caption"
+  #         prompt: "a photo of"
+  #       eval:
+  #         name: "bita_caption"
+  # nwpu_caption:
+  #   vis_processor:
+  #       train:
+  #         name: "bita_image_train"
+  #         image_size: 224
+  #       eval:
+  #         name: "bita_image_train"
+  #         image_size: 224
+  #   text_processor:
+  #       train:
+  #         name: "bita_caption"
+  #         prompt: "a photo of"
+  #       eval:
+  #         name: "bita_caption"
+  ucm_caption:
+    vis_processor:
+        train:
+          name: "bita_image_train"
+          image_size: 224
+        eval:
+          name: "bita_image_train"
+          image_size: 224
+    text_processor:
+        train:
+          name: "bita_caption"
+          prompt: "a photo of"
+        eval:
+          name: "bita_caption"
+
+
+run:
+  task: captioning
+  batch_size_train: 48
+  batch_size_eval: 16
+  num_workers: 0
+
+  max_len: 22
+  min_len: 5
+  num_beams: 5
+
+  seed: 42
+  output_dir: "output/"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: True
+  test_splits: ["test"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True
