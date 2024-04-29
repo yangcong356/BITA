@@ -31,6 +31,10 @@ In the final fine-tuning stage, please replace the value of the 'pretrained' fie
 bash ./scripts/bita/train/train_caption.sh
 ```
 
+## Evaluating Only
+```
+bash ./scripts/bita/eval/eval_caption.sh
+```
 
 
 ## Acknowledgments
