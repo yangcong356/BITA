@@ -61,9 +61,6 @@ run:
   seed: 42
   output_dir: "output/"
 
-  amp: True
-  resume_ckpt_path: null
-
   evaluate: True
   test_splits: ["test"]
 
