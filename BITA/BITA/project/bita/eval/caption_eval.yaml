@@ -6,44 +6,26 @@ model:
 datasets:
   # rsicd_caption:
   #   vis_processor:
-  #       train:
-  #         name: "bita_image_train"
-  #         image_size: 224
   #       eval:
-  #         name: "bita_image_train"
+  #         name: "bita_image_eval"
   #         image_size: 224
   #   text_processor:
-  #       train:
-  #         name: "bita_caption"
-  #         prompt: "a photo of"
   #       eval:
   #         name: "bita_caption"
   # nwpu_caption:
   #   vis_processor:
-  #       train:
-  #         name: "bita_image_train"
-  #         image_size: 224
   #       eval:
-  #         name: "bita_image_train"
+  #         name: "bita_image_eval"
   #         image_size: 224
   #   text_processor:
-  #       train:
-  #         name: "bita_caption"
-  #         prompt: "a photo of"
   #       eval:
   #         name: "bita_caption"
   ucm_caption:
     vis_processor:
-        train:
-          name: "bita_image_train"
-          image_size: 224
         eval:
-          name: "bita_image_train"
+          name: "bita_image_eval"
           image_size: 224
     text_processor:
-        train:
-          name: "bita_caption"
-          prompt: "a photo of"
         eval:
           name: "bita_caption"
 
