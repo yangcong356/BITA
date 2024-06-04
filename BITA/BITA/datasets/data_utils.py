@@ -2,7 +2,7 @@ import torch
 import logging
 import webdataset as wds
 from torch.utils.data.dataset import IterableDataset, ChainDataset
-from vlp.datasets.datasets.base_dataset import ConcatDataset
+from BITA.datasets.datasets.base_dataset import ConcatDataset
 
 
 def apply_to_sample(f, sample):
