@@ -63,13 +63,13 @@ class Blip2OPT(BITABase):
             self.visual_encoder.train = disabled_train
             logging.info("freeze vision encoder")
 
-        self.IFformer, self.query_tokens = self.init_IFT(
+        self.Fformer, self.query_tokens = self.init_IFT(
             num_query_token, self.visual_encoder.num_features
         )
-        self.IFformer.cls = None
-        self.IFformer.bert.embeddings.word_embeddings = None
-        self.IFformer.bert.embeddings.position_embeddings = None
-        for layer in self.IFformer.bert.encoder.layer:
+        self.Fformer.cls = None
+        self.Fformer.bert.embeddings.word_embeddings = None
+        self.Fformer.bert.embeddings.position_embeddings = None
+        for layer in self.Fformer.bert.encoder.layer:
             layer.output = None
             layer.intermediate = None
 
@@ -84,7 +84,7 @@ class Blip2OPT(BITABase):
         ).input_ids[0]
 
         self.opt_proj = nn.Linear(
-            self.IFformer.config.hidden_size, self.opt_model.config.hidden_size
+            self.Fformer.config.hidden_size, self.opt_model.config.hidden_size
         )
 
         self.max_txt_len = max_txt_len
@@ -104,7 +104,7 @@ class Blip2OPT(BITABase):
         )
 
         query_tokens = self.query_tokens.expand(image_embeds.shape[0], -1, -1)      # [32, 32, 768]
-        query_output = self.IFformer.bert(
+        query_output = self.Fformer.bert(
             query_embeds=query_tokens,
             encoder_hidden_states=image_embeds,
             encoder_attention_mask=image_atts,
@@ -188,7 +188,7 @@ class Blip2OPT(BITABase):
             )
 
             query_tokens = self.query_tokens.expand(image_embeds.shape[0], -1, -1)
-            query_output = self.IFformer.bert(
+            query_output = self.Fformer.bert(
                 query_embeds=query_tokens,
                 encoder_hidden_states=image_embeds,
                 encoder_attention_mask=image_atts,

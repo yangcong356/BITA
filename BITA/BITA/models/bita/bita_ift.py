@@ -60,20 +60,20 @@ class BITAIFformer(BITABase):
             self.visual_encoder = self.visual_encoder.eval()
             self.visual_encoder.train = disabled_train
             logging.info("freeze vision encoder")
-        self.IFformer, self.query_tokens = self.init_IFT(
+        self.Fformer, self.query_tokens = self.init_IFT(
             num_query_token, self.visual_encoder.num_features
         )
-        self.IFformer.resize_token_embeddings(len(self.tokenizer))
-        state_dict = self.IFformer.state_dict()
-        for name, param in self.IFformer.named_parameters():
+        self.Fformer.resize_token_embeddings(len(self.tokenizer))
+        state_dict = self.Fformer.state_dict()
+        for name, param in self.Fformer.named_parameters():
             if "_query" in name:
                 key_orig = name.replace("_query", "")
                 param.data.copy_(state_dict[key_orig])
 
-        self.vision_proj = nn.Linear(self.IFformer.config.hidden_size, embed_dim)
-        self.text_proj = nn.Linear(self.IFformer.config.hidden_size, embed_dim)
+        self.vision_proj = nn.Linear(self.Fformer.config.hidden_size, embed_dim)
+        self.text_proj = nn.Linear(self.Fformer.config.hidden_size, embed_dim)
 
-        self.itm_head = nn.Linear(self.IFformer.config.hidden_size, 2)
+        self.itm_head = nn.Linear(self.Fformer.config.hidden_size, 2)
 
         self.temp = nn.Parameter(0.07 * torch.ones([]))
 
@@ -90,7 +90,7 @@ class BITAIFformer(BITABase):
 
         query_tokens = self.query_tokens.expand(image_embeds.shape[0], -1, -1)
 
-        query_output = self.IFformer.bert(
+        query_output = self.Fformer.bert(
             query_embeds=query_tokens,
             encoder_hidden_states=image_embeds,
             encoder_attention_mask=image_atts,
@@ -109,7 +109,7 @@ class BITAIFformer(BITABase):
             max_length=self.max_txt_len,
             return_tensors="pt",
         ).to(image.device)
-        text_output = self.IFformer.bert(
+        text_output = self.Fformer.bert(
             text_tokens.input_ids,
             attention_mask=text_tokens.attention_mask,
             return_dict=True,
@@ -206,7 +206,7 @@ class BITAIFformer(BITABase):
         )
         query_tokens = self.query_tokens.expand(image_embeds.shape[0], -1, -1)
 
-        outputs = self.IFformer.generate(
+        outputs = self.Fformer.generate(
             input_ids=input_ids,
             query_embeds=query_tokens,
             max_length=max_length,
@@ -229,7 +229,7 @@ class BITAIFformer(BITABase):
 
         query_tokens = self.query_tokens.expand(image_embeds.shape[0], -1, -1)
 
-        query_output = self.IFformer.bert(
+        query_output = self.Fformer.bert(
             query_embeds=query_tokens,
             encoder_hidden_states=image_embeds,
             encoder_attention_mask=image_atts,
@@ -238,7 +238,7 @@ class BITAIFformer(BITABase):
         return query_output.last_hidden_state, image_embeds
 
     def forward_text(self, text_tokens):
-        text_output = self.IFformer.bert(
+        text_output = self.Fformer.bert(
             text_tokens.input_ids,
             attention_mask=text_tokens.attention_mask,
             return_dict=True,
@@ -254,7 +254,7 @@ class BITAIFformer(BITABase):
             image_inputs.device
         )
         attention_mask = torch.cat([query_atts, text_atts], dim=1)
-        output_itm = self.IFformer.bert(
+        output_itm = self.Fformer.bert(
             text_ids,
             query_embeds=query_tokens,
             attention_mask=attention_mask,
@@ -313,7 +313,7 @@ class BITAIFformer(BITABase):
                 image_embeds_frozen.shape[0], -1, -1
             )
 
-            query_output = self.IFformer.bert(
+            query_output = self.Fformer.bert(
                 query_embeds=query_tokens,
                 encoder_hidden_states=image_embeds_frozen,
                 encoder_attention_mask=image_atts,
@@ -332,7 +332,7 @@ class BITAIFformer(BITABase):
                 self.device
             )
 
-            text_output = self.IFformer.bert(
+            text_output = self.Fformer.bert(
                 text.input_ids,
                 attention_mask=text.attention_mask,
                 return_dict=True,
@@ -361,7 +361,7 @@ class BITAIFformer(BITABase):
             )
             attention_mask = torch.cat([query_atts, text.attention_mask], dim=1)
 
-            output = self.IFformer.bert(
+            output = self.Fformer.bert(
                 text.input_ids,
                 query_embeds=query_tokens,
                 attention_mask=attention_mask,

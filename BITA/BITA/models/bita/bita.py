@@ -46,14 +46,14 @@ class BITABase(BaseModel):
         # encoder_config.cross_attention_freq = cross_attention_freq
         encoder_config.query_length = num_query_token
         print(encoder_config.cross_attention_freq)
-        IFformer = BertLMHeadModel.from_pretrained(
+        Fformer = BertLMHeadModel.from_pretrained(
             "bert-base-uncased", config=encoder_config
         )
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size)
         )
         query_tokens.data.normal_(mean=0.0, std=encoder_config.initializer_range)
-        return IFformer, query_tokens
+        return Fformer, query_tokens
 
     def init_vision_encoder(
         self, model_name, img_size, drop_path_rate, use_grad_checkpoint, precision
