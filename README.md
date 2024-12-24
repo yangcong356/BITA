@@ -8,8 +8,7 @@ This is the official code for "Bootstrapping Interactive Image-Text Alignment fo
 
 
  ## Dataset
-This paper utilizes the NWPU-Caption, RSICD, and UCM-Caption datasets [OneDrive](https://1drv.ms/f/s!AvupDOrrrLbs7UaAbjbAaM06ywh2?e=tcE6Nn) [Baidu Netdisk](链接：https://pan.baidu.com/s/1y5IYbeE_qLfAEbq_hJsd2Q?pwd=kcq8 
-提取码：kcq8). During the pre-training phase, we exclusively employ the training sets of these three datasets. For the final fine-tuning stage, please uncomment the val and test fields for the three datasets located in the BITA/configs/datasets/ directory.
+This paper utilizes the NWPU-Caption, RSICD, and UCM-Caption datasets [OneDrive](https://1drv.ms/f/s!AvupDOrrrLbs7UaAbjbAaM06ywh2?e=tcE6Nn) [Baidu Netdisk](https://pan.baidu.com/s/1y5IYbeE_qLfAEbq_hJsd2Q?pwd=kcq8). During the pre-training phase, we exclusively employ the training sets of these three datasets. For the final fine-tuning stage, please uncomment the val and test fields for the three datasets located in the BITA/configs/datasets/ directory.
 
  ## Weights
 The download links for the weights from the two-stage pre-training and the final fine-tuning stage are [available](https://1drv.ms/f/s!AvupDOrrrLbs7T8J5HpD-gHTny6D?e=RhcJxi) here. Within this, the 'Caption' folder contains the model weights with the best validation accuracy on the validation set during the fine-tuning stage.
